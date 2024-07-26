@@ -27,7 +27,7 @@ elseif ($PercentFree -le $ThreshHold2) {
 Write-EventLog –LogName System –Source "DiskAlert" –EntryType Warning –EventID 112 -Message "Der Speicherplatz auf der Maschine $MachineName ist kritisch, Laufwerk $Drive ist geringer als $ThreshHold2 Prozent der Gesamtkapazität. Auf dem Laufwerk $Drive sind nur noch $PercentFree Prozent frei."
 
 $Sender = "email sender" 
-$Receipt = email empfänger" 
+$Receipt = "email empfänger" 
 $Server = "mailserver" 
 $Subject = $env:computername+": automatische Festplattenüberwachung vom "+(Get-Date)
 $Content = "Der Speicherplatz auf der Maschine $MachineName ist kritisch, Laufwerk $Drive ist geringer als $ThreshHold2 Prozent der Gesamtkapazität. Auf dem Laufwerk $Drive sind nur noch $PercentFree Prozent frei."
@@ -35,7 +35,7 @@ $SMTPclient = new-object System.Net.Mail.SmtpClient $Server
 $SMTPClient.port = 587 
 $SMTPclient.EnableSsl = $true
 $SMTPAuthUsername = "email adresse" 
-$SMTPAuthPassword = "e-mail passwort" 
+$SMTPAuthPassword = "email passwort" 
 $SMTPClient.Credentials = New-Object System.Net.NetworkCredential($SMTPAuthUsername, $SMTPAuthPassword)
 $Message = new-object System.Net.Mail.MailMessage $Sender, $Receipt, $Subject, $Content 
 $Message.IsBodyHtml = $true
